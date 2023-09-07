@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">InfinityStydio</title>
+</head>
+
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/login}">Log in</a></li>
+            <li><a th:href="@{/logout}">Log out</a></li>
+            <li><a th:href="@{/register}">Register</a></li>
+            <li><a th:href="@{/students}">Головна</a></li>
+            <li><a th:href="@{/students/new}">Новий студент</a></li>
+            <li><a th:href="@{/studenttests}">Призначення</a></li>
+            <!-- Додайте інші пункти меню за необхідністю -->
+        </ul>
+    </nav>
+</header>
+
+<body layout:fragment="body">
+
+</body>
+
+<footer>
+    <div class="footer-content">
+        <p>Копірайт © 2023. Назва вашого сайту. Всі права захищені.</p>
+        <ul class="footer-links">
+            <li><a href="#">Політика конфіденційності</a></li>
+            <li><a href="#">Умови використання</a></li>
+            <!-- Додайте інші посилання, які потрібні вам -->
+        </ul>
+    </div>
+</footer>
+</html>

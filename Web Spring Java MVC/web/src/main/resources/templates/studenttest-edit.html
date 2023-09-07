@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>StudentTest create</title>
+</head>
+
+<body layout:fragment="body">
+<h1>Add New StudentTest</h1>
+<form role="form" method="post" th:action="@{/studenttests/{studentTestId}/edit(studentTestId=${studentTestId})}" th:object="${studentTest}">
+  <label for="isActive">Is Active:</label>
+  <input type="checkbox"
+         id="isActive"
+         name="isActive"
+         th:field="*{isActive}">
+
+  <label for="scheduledTimeToStart">Scheduled Time to Start:</label>
+  <input type="datetime-local"
+         id="scheduledTimeToStart"
+         name="scheduledTimeToStart"
+         th:field="*{scheduledTimeToStart}">
+  <p th:if="${#fields.hasErrors('scheduledTimeToStart')}" th:errors="*{scheduledTimeToStart}"></p>
+
+  <label for="deadlineTimeToStart">Deadline Time to Start:</label>
+  <input type="datetime-local"
+         id="deadlineTimeToStart"
+         name="deadlineTimeToStart"
+         th:field="*{deadlineTimeToStart}">
+  <p th:if="${#fields.hasErrors('deadlineTimeToStart')}" th:errors="*{deadlineTimeToStart}"></p>
+
+  <label for="isTimeRestricted">Is Time Restricted:</label>
+  <input type="checkbox"
+         id="isTimeRestricted"
+         name="isTimeRestricted"
+         th:field="*{isTimeRestricted}">
+
+  <label for="timeLimitMinutes">Time Limit (in minutes):</label>
+  <input type="number"
+         id="timeLimitMinutes"
+         name="timeLimitMinutes"
+         th:field="*{timeLimitMinutes}">
+
+  <label for="isTimeLimited">Is Time Limited:</label>
+  <input type="checkbox"
+         id="isTimeLimited"
+         name="isTimeLimited"
+         th:field="*{isTimeLimited}">
+
+  <input type="submit" value="Edit Student Test">
+</form>
+</body>
+</html>

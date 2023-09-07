@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Student edit</title>
+</head>
+
+<body layout:fragment="body">
+<h1>Add New Student</h1>
+<form role="form" method="post" th:action="@{/students/{studentId}/edit(studentId=${student.id})}" th:object="${student}">
+
+    <input type="hidden" name="id" th:field="*{id}">
+
+    <label for="username"></label>
+    <input type="text"
+           id="username"
+           name="username"
+           placeholder="Username"
+           th:field="*{username}">
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+
+    <label for="firstName"></label>
+    <input type="text"
+           id="firstName"
+           name="firstName"
+           placeholder="First Name"
+           th:field="*{firstName}">
+    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+
+    <label for="lastName"></label>
+    <input type="text"
+           id="lastName"
+           name="lastName"
+           placeholder="Last Name"
+           th:field="*{lastName}">
+    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+
+    <label for="email"></label>
+    <input type="text"
+           id="email"
+           name="email"
+           placeholder="Email"
+           th:field="*{email}">
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+
+    <input type="submit" value="Create Student">
+</form>
+</body>
+</html>

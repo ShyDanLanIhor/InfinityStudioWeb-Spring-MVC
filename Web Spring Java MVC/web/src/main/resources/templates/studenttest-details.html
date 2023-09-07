@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+</head>
+
+<body layout:fragment="body">
+<h1>Student Details</h1>
+
+<p><strong>ID:</strong> <span th:text="${studentTest.id}"></span></p>
+<p><strong>Час для старту:</strong> <span th:text="${#temporals.format(studentTest.scheduledTimeToStart, 'dd/MM/yyyy HH:mm')}" ></span></p>
+<p><strong>Крайній час для старту:</strong> <span th:text="${#temporals.format(studentTest.deadlineTimeToStart, 'dd/MM/yyyy HH:mm')}" ></span></p>
+<a th:href="@{/studenttests/{studentTestId}/delete(studentTestId=${studentTest.id})}">Видалити призначення</a>
+</body>
+</html>

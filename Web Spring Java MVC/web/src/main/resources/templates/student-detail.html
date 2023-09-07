@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Student create</title>
+</head>
+
+<body layout:fragment="body">
+  <h1>Student Details</h1>
+
+  <p><strong>ID:</strong> <span th:text="${student.id}"></span></p>
+  <p><strong>Username:</strong> <span th:text="${student.username}"></span></p>
+  <p><strong>First Name:</strong> <span th:text="${student.firstName}"></span></p>
+  <p><strong>Last Name:</strong> <span th:text="${student.lastName}"></span></p>
+  <p><strong>Email:</strong> <span th:text="${student.email}"></span></p>
+  <a th:href="@{/students/{studentId}/delete(studentId=${student.id})}">Видалити студента</a>
+  <a th:href="@{/studenttests/{studentId}/new(studentId=${student.id})}">Призначити тест</a>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Час для старту</th>
+      <th>Крайній час для старту</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="assignment : ${student.studentTestDtos}">
+      <td th:text="${assignment.id}"></td>
+      <td th:text="${#temporals.format(assignment.scheduledTimeToStart, 'dd/MM/yyyy HH:mm')}"></td>
+      <td th:text="${#temporals.format(assignment.deadlineTimeToStart, 'dd/MM/yyyy HH:mm')}"></td>
+      <td>
+        <a th:href="@{/studenttests/{assignmentId}(assignmentId=${assignment.id})}" >Переглянути</a>
+      </td>
+      <td>
+        <a th:href="@{/studenttests/{assignmentId}/edit(assignmentId=${assignment.id})}" >Змінити</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</body>
+</html>

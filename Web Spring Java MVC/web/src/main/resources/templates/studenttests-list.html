@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Список призначення тестів студентам</title>
+</head>
+<section layout:fragment="body">
+    <h1>Список призначення тестів студентам</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Час для старту</th>
+            <th>Крайній час для старту</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="assignment : ${studentTests}">
+            <td th:text="${assignment.id}"></td>
+            <td th:text="${#temporals.format(assignment.scheduledTimeToStart, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${#temporals.format(assignment.deadlineTimeToStart, 'dd/MM/yyyy HH:mm')}"></td>
+            <td>
+                <a th:href="@{/studenttests/{assignmentId}(assignmentId=${assignment.id})}" >Переглянути</a>
+            </td>
+            <td>
+                <a th:href="@{/studenttests/{assignmentId}/edit(assignmentId=${assignment.id})}" >Змінити</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</html>

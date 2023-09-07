@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Список студентів</title>
+</head>
+<section layout:fragment="body">
+  <h1>Список студентів</h1>
+  <form th:action="@{/students/search}" >
+    <input name="query" type="search" placeholder="Students name" aria-label="Search">
+  </form>
+  <a th:if="${param.success}">You are registered successfully</a>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ім'я</th>
+      <th>Прізвище</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Циклічно пройтися по списку студентів та відобразити їх інформацію -->
+    <tr th:each="student : ${students}">
+      <td th:text="${student.id}"></td>
+      <td th:text="${student.firstName}"></td>
+      <td th:text="${student.lastName}"></td>
+      <td>
+        <a th:href="@{/students/{studentId}/edit(studentId=${student.id})}" >Змінити</a>
+      </td>
+      <td>
+        <a th:href="@{/students/{studentId}(studentId=${student.id})}" >Переглянути</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+</html>
